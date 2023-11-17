@@ -12,7 +12,6 @@ VALUES
     (3, 'Bs Beverages');
 
 -- messes up here 
--- TRUNCATE TABLE Customers;
 DROP TABLE IF EXISTS Customers;
 
 CREATE TABLE

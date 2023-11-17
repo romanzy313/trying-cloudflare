@@ -10,10 +10,10 @@
     "astro": "astro",
     "pages:dev": "wrangler pages dev --compatibility-date=2023-05-18 -- astro dev",
     "pages:deploy": "astro build && wrangler pages deploy ./dist",
-    "dev": "wrangler pages dev ./src --kv=KV --d1= DB",
-    "dev2": "wrangler pages dev --compatibility-date=2023-05-18 ./src",
-    "deploy": "wrangler pages deploy ./src",
-    "typegen": "DATABASE_URL=\"./.wrangler/state/v3/d1/miniflare-D1DatabaseObject/e7352547963de7050bd7d94658afc4fe78b61811b7815da12d90be8e863abf4d.sqlite\" kysely-codegen"
+    "dev": "wrangler pages dev ./src",
+    "typegen": "DATABASE_URL=\"./.wrangler/state/v3/d1/miniflare-D1DatabaseObject/e7352547963de7050bd7d94658afc4fe78b61811b7815da12d90be8e863abf4d.sqlite\" kysely-codegen",
+    "dev:migrate": "wrangler d1 migrations apply DB --local",
+    "deploy": "wrangler pages deploy ./src"
   },
   "dependencies": {
     "kysely": "^0.26.3",
