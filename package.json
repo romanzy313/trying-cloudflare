@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "kysely": "^0.26.3",
-    "kysely-d1": "^0.3.0"
+    "kysely-d1": "^0.3.0",
+    "toucan-js": "^3.3.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231025.0",

@@ -3,7 +3,7 @@ compatibility_date = "2023-11-15"
 kv_namespaces = [{ binding = "KV", id = "999c4cf019a94b0eb439209c893a3356" }]
 
 # the name what is it?
-tail_consumers = [{ service = "sentry-logger", environment = "production" }]
+# tail_consumers = [{ service = "sentry-logger", environment = "production" }]
 
 [[d1_databases]]
 binding = "DB"                                       # i.e. available in your Worker on env.DB
