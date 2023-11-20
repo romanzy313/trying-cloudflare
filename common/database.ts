@@ -12,9 +12,9 @@ import { DB } from "kysely-codegen";
 //   Customers: CustomersTable;
 // }
 
-export function getDb(DB: any) {
+export function d1(env: any) {
   const db = new Kysely<DB>({
-    dialect: new D1Dialect({ database: DB }),
+    dialect: new D1Dialect({ database: env.DB }),
   });
 
   return db;

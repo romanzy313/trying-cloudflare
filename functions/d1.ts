@@ -1,13 +1,18 @@
-import { getDb } from "../src/database";
+import { d1 } from "../common/database";
+import { DbPluginData } from "./_md/db";
 interface Env {
-  DB: D1Database;
+  // DB: D1Database;
 }
 
 // simple test for now
 
-export const onRequest: PagesFunction<Env> = async ({ request, env }) => {
-  const db = getDb(env.DB);
-  const query = db
+export const onRequest: PagesFunction<Env, any, DbPluginData> = async ({
+  request,
+  env,
+  data,
+}) => {
+  // const db = d1(env);
+  const query = data.db
     .selectFrom("Customer")
     .innerJoin("Business", "Business.id", "Customer.companyId")
     .select([
@@ -19,7 +24,7 @@ export const onRequest: PagesFunction<Env> = async ({ request, env }) => {
     .compile();
   console.log("query", query.sql);
 
-  const results = await db.executeQuery(query);
+  const results = await data.db.executeQuery(query);
 
   console.log("result", results);
 

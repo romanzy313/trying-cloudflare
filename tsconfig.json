@@ -4,10 +4,9 @@
     "module": "esnext",
     "lib": ["esnext"],
     "moduleResolution": "Node",
-    "types": ["@cloudflare/workers-types", "vite/client"],
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx",
+    "types": ["@cloudflare/workers-types"],
     "esModuleInterop": true
     // "strict": true
-  }
+  },
+  "exclude": ["functions/**/*"]
 }
