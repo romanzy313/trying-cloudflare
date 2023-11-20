@@ -20,13 +20,8 @@ export const onRequest: PagesFunction<Env> = async ({
   if (Number.isNaN(value)) value = 0;
   else value++;
 
-  waitUntil(() => {
-    console.log("we are waiting here");
-
-    return Promise.resolve();
-  });
-
-  await env.KV.put("counter", value.toString());
+  // this will be executed after function is returned, pretty cool
+  waitUntil(env.KV.put("counter", value.toString()));
 
   const rand = crypto.randomUUID();
   //   const result = `${value}=${rand}`;
