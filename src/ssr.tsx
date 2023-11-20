@@ -1,40 +1,7 @@
 import { Hono } from "hono";
-import { renderer } from "../common/renderer";
 import fs from "fs/promises";
 import path from "path";
-
-const app = new Hono();
-
-// ssr middleware, wri
-
-app.use("*", async (c, next) => {
-  const start = Date.now();
-  await next();
-  const end = Date.now();
-  c.res.headers.set("X-Response-Time", `${end - start}`);
-  //   console.log("in middleware", c.res.headers);
-});
-
-app.use("*", renderer);
-
-app.get("/", (c) =>
-  c.render(<div>Hello world</div>, {
-    title: "hello world",
-  })
-);
-
-app.get("/404", (c) =>
-  c.render(<div>Page not found!</div>, {
-    title: "hello world",
-  })
-);
-console.log("routes", app.routes);
-
-app.get("/dynamic/:id", (c) => {
-  // add parameter for this route
-  // need a way to define static params
-  return c.render(<div>Id is {c.req.param("id")}</div>);
-});
+import app from "./static";
 
 class SSRRunner {
   private routes: string[] = [];
@@ -58,6 +25,8 @@ class SSRRunner {
   }
 
   async run() {
+    console.log("all routes 2", this.routes);
+
     const renderProm = this.routes.map((route) => {
       const url = `http://example.com${route}`;
       console.log("rendering", route);
@@ -89,18 +58,16 @@ class SSRRunner {
       // sometimes apis are painful
       parts.pop();
 
-      return fs
-        .mkdir(path.join(this.dest, parts.join("/")), {
+      return new Promise<void>((resolve) => {
+        fs.mkdir(path.join(this.dest, parts.join("/")), {
           recursive: true,
-        })
-        .then(() => {
-          return fs.writeFile(file, v);
+        }).then(() => {
+          fs.writeFile(file, v).then(() => {
+            resolve();
+          });
         });
-      //   return new Promise((resolve) => {
-      //     fs.writeFile(destination, v);
-      //   })
+      });
     });
-
     const writeRes = await Promise.all(writeProm);
     console.log("saved", writeRes.length, "routes");
   }
@@ -111,6 +78,8 @@ const ssr = new SSRRunner(app, "./pages-gen");
 
 ssr.useAllGets();
 ssr.addRoutes(["/dynamic/344", "/dynamic/233"]);
+
+console.log("running render", Date.now());
 
 await ssr.run();
 

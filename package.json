@@ -3,8 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "wrangler pages dev ./pages",
-    "deploy": "wrangler pages deploy ./pages --branch=production --commit-dirty=true",
+    "dev": "wrangler pages dev --live-reload ./pages-gen",
+    "dev2": "wrangler pages dev --live-reload --proxy 4500 -- vite-node --watch ./src/dev.tsx",
+    "dev-ssr": "vite-node --watch ./src/ssr.tsx",
+    "build-ssr": "vite-node ./src/ssr.tsx",
+    "deploy": "vite-node ./src/ssr.tsx && wrangler pages deploy ./pages-gen --branch=production --commit-dirty=true",
     "typegen": "DATABASE_URL=\"./.wrangler/state/v3/d1/miniflare-D1DatabaseObject/e7352547963de7050bd7d94658afc4fe78b61811b7815da12d90be8e863abf4d.sqlite\" kysely-codegen",
     "dev:migrate": "wrangler d1 migrations apply DB --local"
   },
@@ -19,6 +22,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231025.0",
+    "@hono/node-server": "^1.2.3",
     "better-sqlite3": "^9.1.1",
     "kysely-codegen": "^0.11.0",
     "typescript": "^5.2.2",
