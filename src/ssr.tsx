@@ -70,6 +70,8 @@ class SSRRunner {
     });
     const writeRes = await Promise.all(writeProm);
     console.log("saved", writeRes.length, "routes");
+
+    console.log("SSR COMPLETE");
   }
 }
 

@@ -21,6 +21,12 @@ app.get("/", (c) => {
             ws.addEventListener("message", ({ data }) => {
               console.log(data);
             });
+
+            setInterval(() => {
+              const msg = "Hello " + Math.random();
+              console.log("Ping: " + msg);
+              ws.send(msg);
+            }, 2000);
           </script>
           <h1>WebSocket</h1>
         </body>
@@ -41,6 +47,14 @@ app.get("/websocket", (c) => {
   const server = webSocketPair[1] as unknown as CFWebSocket;
   server.accept();
   server.send("Hello");
+
+  server.addEventListener("message", (v) => {
+    console.log("got message", v.data);
+
+    server.send(`Pong: ${v.data}`);
+
+    // server.send(`Pong: `);
+  });
 
   return new Response(null, {
     status: 101,
