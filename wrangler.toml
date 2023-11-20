@@ -1,4 +1,5 @@
 name = "test-01"
+
 compatibility_date = "2023-11-15"
 kv_namespaces = [{ binding = "KV", id = "999c4cf019a94b0eb439209c893a3356" }]
 

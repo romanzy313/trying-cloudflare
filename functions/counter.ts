@@ -13,11 +13,18 @@ export const onRequest: PagesFunction<Env> = async ({
   request,
   params,
   env,
+  waitUntil,
 }) => {
   let value = parseInt(await env.KV.get("counter"));
 
   if (Number.isNaN(value)) value = 0;
   else value++;
+
+  waitUntil(() => {
+    console.log("we are waiting here");
+
+    return Promise.resolve();
+  });
 
   await env.KV.put("counter", value.toString());
 

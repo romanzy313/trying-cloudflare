@@ -13,9 +13,10 @@
     "dev": "wrangler pages dev ./src",
     "typegen": "DATABASE_URL=\"./.wrangler/state/v3/d1/miniflare-D1DatabaseObject/e7352547963de7050bd7d94658afc4fe78b61811b7815da12d90be8e863abf4d.sqlite\" kysely-codegen",
     "dev:migrate": "wrangler d1 migrations apply DB --local",
-    "deploy": "wrangler pages deploy ./src"
+    "deploy": "wrangler pages deploy ./src --branch=production --commit-dirty=true"
   },
   "dependencies": {
+    "@borderless/worker-sentry": "^2.0.0",
     "kysely": "^0.26.3",
     "kysely-d1": "^0.3.0",
     "toucan-js": "^3.3.1"

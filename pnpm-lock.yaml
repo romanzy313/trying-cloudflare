@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@borderless/worker-sentry':
+    specifier: ^2.0.0
+    version: 2.0.0
   kysely:
     specifier: ^0.26.3
     version: 0.26.3
@@ -33,6 +36,11 @@ devDependencies:
     version: 3.16.0
 
 packages:
+
+  /@borderless/worker-sentry@2.0.0:
+    resolution: {integrity: sha512-HmH9E7xcYDpcmTscyTfxT6hyjA9vIGFQRy2VQ6e5g2JW778FlL2vYjmVlnkuDMNQdFmcZaUwHo7GedoO95xC6w==}
+    engines: {node: '>=14'}
+    dev: false
 
   /@cloudflare/kv-asset-handler@0.2.0:
     resolution: {integrity: sha512-MVbXLbTcAotOPUj0pAMhVtJ+3/kFkwJqc5qNOleOZTv6QkZZABDMS21dSrSlVswEHwrpWC03e4fWytjqKvuE2A==}
