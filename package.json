@@ -13,10 +13,13 @@
     "dev": "wrangler pages dev ./src",
     "typegen": "DATABASE_URL=\"./.wrangler/state/v3/d1/miniflare-D1DatabaseObject/e7352547963de7050bd7d94658afc4fe78b61811b7815da12d90be8e863abf4d.sqlite\" kysely-codegen",
     "dev:migrate": "wrangler d1 migrations apply DB --local",
-    "deploy": "wrangler pages deploy ./src --branch=production --commit-dirty=true"
+    "deploy": "wrangler pages deploy ./src --branch=production --commit-dirty=true",
+    "build2": "tsc functions-src/*.ts --outdir functions"
   },
   "dependencies": {
     "@borderless/worker-sentry": "^2.0.0",
+    "@cloudflare/pages-plugin-sentry": "^1.1.1",
+    "hono": "^3.10.1",
     "kysely": "^0.26.3",
     "kysely-d1": "^0.3.0",
     "toucan-js": "^3.3.1"
@@ -26,6 +29,7 @@
     "better-sqlite3": "^9.1.1",
     "kysely-codegen": "^0.11.0",
     "typescript": "^5.2.2",
+    "vite": "^5.0.0",
     "wrangler": "^3.15.0"
   }
 }
