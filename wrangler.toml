@@ -6,9 +6,9 @@ kv_namespaces = [{ binding = "KV", id = "999c4cf019a94b0eb439209c893a3356" }]
 # the name what is it?
 # tail_consumers = [{ service = "sentry-logger", environment = "production" }]
 
-[build]
+# [build]
 # command = "pnpm build-ssr"
-watch_dir = "pages-gen"
+# watch_dir = "pages-gen"
 
 
 [[d1_databases]]

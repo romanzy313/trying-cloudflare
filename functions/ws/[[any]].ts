@@ -52,8 +52,6 @@ app.get("/websocket", (c) => {
     console.log("got message", v.data);
 
     server.send(`Pong: ${v.data}`);
-
-    // server.send(`Pong: `);
   });
 
   return new Response(null, {
