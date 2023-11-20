@@ -17,13 +17,13 @@ type SentryPagesPluginFunction<
 const onRequest: SentryPagesPluginFunction = async (context) => {
   if (context.env.ENVIRONMENT === "development") {
     context.data.sentry = {
-      captureException: (exception: unknown, hint?) => {
+      captureException: (exception: unknown, hint?: any) => {
         console.error("Captured exception", exception);
       },
       captureMessage: (
         message: string,
         level?: "fatal" | "error" | "warning" | "log" | "info" | "debug",
-        hint?
+        hint?: any
       ) => {
         console.log(`[${level || "log"}]`, message);
       },
@@ -31,7 +31,7 @@ const onRequest: SentryPagesPluginFunction = async (context) => {
 
     try {
       return await context.next();
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       return new Response(`${err.message}\n${err.stack}`, { status: 500 });
     }

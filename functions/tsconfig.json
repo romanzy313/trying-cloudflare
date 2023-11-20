@@ -7,7 +7,7 @@
     "types": ["@cloudflare/workers-types", "vite/client"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "esModuleInterop": true
-    // "strict": true
+    "esModuleInterop": true,
+    "strict": true
   }
 }

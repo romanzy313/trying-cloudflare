@@ -30,6 +30,13 @@ app.get("/", (c) => {
   return c.html(<Top messages={messages} />);
 });
 
+app.get("/api", (c) => {
+  const messages = ["Good Morning", "Good Evening", "Good Night"];
+  return c.jsonT({
+    messages,
+  });
+});
+
 export const onRequest: PagesFunction<{}> = async ({
   data,
   request,

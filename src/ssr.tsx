@@ -31,7 +31,7 @@ class SSRRunner {
       const url = `http://example.com${route}`;
       console.log("rendering", route);
 
-      return (app.fetch(new Request(url)) as any).then((v) => {
+      return (app.fetch(new Request(url)) as any).then((v: any) => {
         return v.text();
       }) as Promise<string>;
     });
