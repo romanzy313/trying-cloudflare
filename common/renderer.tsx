@@ -14,6 +14,15 @@ export const renderer = jsxRenderer(
         <head>
           <link href="/static/style.css" rel="stylesheet" />
           <title>{title}</title>
+          {import.meta.env.PROD ? (
+            <>
+              <script type="module" src="/js/wc.js"></script>
+            </>
+          ) : (
+            <>
+              <script type="module" src="/src/wc.ts"></script>
+            </>
+          )}
         </head>
         <body>{children}</body>
       </html>

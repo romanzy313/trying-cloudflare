@@ -10,9 +10,17 @@ const app = new Hono()
   })
   .use("*", renderer)
   .get("/", (c) =>
-    c.render(<div>Hello world 222</div>, {
-      title: "hello world",
-    })
+    c.render(
+      <div>
+        <div>
+          <b>Hello world 13123</b>
+        </div>
+        <hello-world></hello-world>
+      </div>,
+      {
+        title: "hello world",
+      }
+    )
   )
   .get("/404", (c) =>
     c.render(<div>Page not found!</div>, {
@@ -26,5 +34,7 @@ const app = new Hono()
   });
 
 export type AppType = typeof app;
+
+// app.render()
 
 export default app;

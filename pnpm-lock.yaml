@@ -37,6 +37,9 @@ devDependencies:
   '@hono/node-server':
     specifier: ^1.2.3
     version: 1.2.3
+  '@hono/vite-dev-server':
+    specifier: ^0.3.0
+    version: 0.3.0
   better-sqlite3:
     specifier: ^9.1.1
     version: 9.1.1
@@ -46,6 +49,9 @@ devDependencies:
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
+  vite:
+    specifier: ^5.0.2
+    version: 5.0.2
   vite-node:
     specifier: ^0.34.6
     version: 0.34.6
@@ -545,6 +551,19 @@ packages:
     engines: {node: '>=18.14.1'}
     dev: true
 
+  /@hono/vite-dev-server@0.3.0:
+    resolution: {integrity: sha512-ZcaYuvRNHf6PH4cnOApxUwHFJlMUiXEUqGqGqf5tP01RNcDhmuPZo9ciUlNrYkFw/30SaDHHHCGXRna3hnRiCQ==}
+    engines: {node: '>=18.14.1'}
+    dependencies:
+      '@hono/node-server': 1.2.3
+      miniflare: 3.20231030.0
+      minimatch: 9.0.3
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
   /@hono/zod-validator@0.1.11(hono@3.10.1)(zod@3.22.4):
     resolution: {integrity: sha512-PQXeHUP0+36qpRt8yfeD7N2jbK3ETlGvSN6dMof/HwUC/APRokQRjpXZm4rrlG71Ft0aWE01+Bm4XejqPie5Uw==}
     peerDependencies:
@@ -776,6 +795,12 @@ packages:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
+    dev: true
+
+  /brace-expansion@2.0.1:
+    resolution: {integrity: sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==}
+    dependencies:
+      balanced-match: 1.0.2
     dev: true
 
   /braces@3.0.2:
@@ -1290,6 +1315,13 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
+  /minimatch@9.0.3:
+    resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      brace-expansion: 2.0.1
+    dev: true
+
   /minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
@@ -1702,7 +1734,7 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 5.0.0
+      vite: 5.0.2
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -1714,8 +1746,8 @@ packages:
       - terser
     dev: true
 
-  /vite@5.0.0:
-    resolution: {integrity: sha512-ESJVM59mdyGpsiNAeHQOR/0fqNoOyWPYesFto8FFZugfmhdHx8Fzd8sF3Q/xkVhZsyOxHfdM7ieiVAorI9RjFw==}
+  /vite@5.0.2:
+    resolution: {integrity: sha512-6CCq1CAJCNM1ya2ZZA7+jS2KgnhbzvxakmlIjN24cF/PXhRMzpM/z8QgsVJA/Dm5fWUWnVEsmtBoMhmerPxT0g==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:

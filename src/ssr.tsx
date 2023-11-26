@@ -75,7 +75,7 @@ class SSRRunner {
   }
 }
 
-const ssr = new SSRRunner(app, "./pages-gen");
+const ssr = new SSRRunner(app, "./dist");
 // ssr.addRoute("/");
 
 ssr.useAllGets();

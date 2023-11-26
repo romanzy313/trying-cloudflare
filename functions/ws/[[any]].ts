@@ -5,6 +5,13 @@ import z from "zod";
 import { Hono } from "hono";
 import { html } from "hono/html";
 import { zValidator } from "@hono/zod-validator";
+import {
+  getCookie,
+  getSignedCookie,
+  setCookie,
+  setSignedCookie,
+  deleteCookie,
+} from "hono/cookie";
 
 const app = new Hono()
   .basePath("/ws")
@@ -44,11 +51,19 @@ const app = new Hono()
       return c.text("Expected websocket", 400);
     }
 
+    // check auth
+
+    const cookie = getCookie(c, "auth");
+
+    if (!cookie || cookie !== "letmein") return c.text("Not authorized", 403);
+
     const webSocketPair = new WebSocketPair();
     const client = webSocketPair[0];
     const server = webSocketPair[1] as unknown as CFWebSocket;
 
     // can check access here
+
+    // server.accept();
 
     server.accept();
     server.send("Hello");
