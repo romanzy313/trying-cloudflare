@@ -1,3 +1,6 @@
+// sources: https://github.com/jamsinclair/jSquash/tree/main/packages/resize
+// https://github.com/jamsinclair/jSquash/tree/main/examples/cloudflare-worker-esm-format
+
 // import decodeJpeg, { init as initJpegWasm } from "@jsquash/jpeg/decode";
 import decodePng, { init as initPngWasm } from "@jsquash/png/decode";
 // import encodeWebp, { init as initWebpWasm } from "@jsquash/webp/encode";
