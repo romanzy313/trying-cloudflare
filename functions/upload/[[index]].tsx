@@ -62,7 +62,7 @@ app
     );
   })
   .post("/", async (c) => {
-    const body = await c.req.parseBody({});
+    const body = await c.req.parseBody();
 
     const file = body.file as File;
     const id = body.id as string;
@@ -95,10 +95,15 @@ app
     // const ogBuffer = Buffer.from(await file.arrayBuffer());
 
     // const vec = new Uint8Array(await file.arrayBuffer());
-    const arBuff = await file.arrayBuffer();
     let processed: ArrayBuffer;
     try {
+      const arBuff = await file.arrayBuffer();
+
+      console.log("post load", arBuff.byteLength);
+
       processed = await processImg3(arBuff, file.type);
+
+      console.log("post process", processed.byteLength);
     } catch (error: any) {
       return c.html(
         <UploadForm
