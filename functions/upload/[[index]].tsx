@@ -4,7 +4,7 @@ import { UploadForm } from "./templates";
 // import { PROFILE_IMAGE_OPTS, processImage } from "./imageProcessing";
 import { getFileUrl } from "./utils";
 import { jsxRenderer } from "hono/jsx-renderer";
-import { Buffer } from "node:buffer";
+// import { Buffer } from "node:buffer";
 import { processImg3 } from "./process3";
 // import { processImage2 } from "./imageProcessing2";
 declare module "hono" {
@@ -87,14 +87,16 @@ app
       );
     }
 
-    const processedName = `${id}.jpg`;
+    const processedName = `${id}.webp`;
     // otherwise process it...
 
     // const processed = await processImage(file, id, PROFILE_IMAGE_OPTS);
 
-    const ogBuffer = Buffer.from(await file.arrayBuffer());
+    // const ogBuffer = Buffer.from(await file.arrayBuffer());
 
-    const processed = await processImg3(ogBuffer);
+    // const vec = new Uint8Array(await file.arrayBuffer());
+
+    const processed = await processImg3(await file.arrayBuffer());
     // const processed = await processImage2(ogBuffer);
     // if (!processed.jpeg)
     //   return c.render(
@@ -102,7 +104,7 @@ app
     //   );
 
     try {
-      const uploadRes = await c.env.R2.put(processedName, ogBuffer);
+      const uploadRes = await c.env.R2.put(processedName, processed);
       console.log("upload success, res", uploadRes);
     } catch (error: any) {
       return c.render(
