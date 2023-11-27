@@ -5,17 +5,23 @@ export const UploadForm: FC<{
   imgUrl?: string;
   error?: string;
 }> = (props) => (
-  <div class="uploader">
-    {props.error && <b>Error: {props.error}</b>}
-    {props.imgUrl && (
-      <div>
+  <>
+    <form
+      id="form"
+      hx-encoding="multipart/form-data"
+      hx-post="/upload"
+      hx-swap="outerHTML"
+      hx-target="#form"
+    >
+      {props.error && <b>Error: {props.error}</b>}
+      {props.imgUrl && (
         <div>
-          Image available at <a href={props.imgUrl}></a>
+          <div>
+            Image available at <a href={props.imgUrl}></a>
+          </div>
+          <img src={props.imgUrl}></img>
         </div>
-        <img src={props.imgUrl}></img>
-      </div>
-    )}
-    <form id="form" hx-encoding="multipart/form-data" hx-post="/upload">
+      )}
       <input name="file" type="file" accept="image/png, image/jpeg"></input>
       <input name="id" type="text" placeholder="id" value={props.id}></input>
       <button type="submit">Upload</button>
@@ -31,5 +37,5 @@ export const UploadForm: FC<{
         `,
       }}
     />
-  </div>
+  </>
 );

@@ -79,7 +79,7 @@ app
     if (!(file instanceof File) || typeof id !== "string" || !id) {
       console.log("inputs are", file, id);
 
-      return c.render(
+      return c.html(
         <UploadForm
           id={(id as string) || crypto.randomUUID()}
           error="bad inputs"
@@ -95,8 +95,18 @@ app
     // const ogBuffer = Buffer.from(await file.arrayBuffer());
 
     // const vec = new Uint8Array(await file.arrayBuffer());
-
-    const processed = await processImg3(await file.arrayBuffer());
+    const arBuff = await file.arrayBuffer();
+    let processed: ArrayBuffer;
+    try {
+      processed = await processImg3(arBuff, file.type);
+    } catch (error: any) {
+      return c.html(
+        <UploadForm
+          id={id}
+          error={`Failed to process ${error.message}`}
+        ></UploadForm>
+      );
+    }
     // const processed = await processImage2(ogBuffer);
     // if (!processed.jpeg)
     //   return c.render(
@@ -107,7 +117,7 @@ app
       const uploadRes = await c.env.R2.put(processedName, processed);
       console.log("upload success, res", uploadRes);
     } catch (error: any) {
-      return c.render(
+      return c.html(
         <UploadForm
           id={id}
           error={`Failed to upload ${error.message}`}
@@ -120,7 +130,7 @@ app
 
     // mark as uploaded, update the src?
 
-    return c.render(
+    return c.html(
       <UploadForm
         id={id}
         error="upload success!"
