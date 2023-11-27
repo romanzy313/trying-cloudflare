@@ -1,6 +1,6 @@
 name = "test-01"
-
 compatibility_date = "2023-11-15"
+compatibility_flags = ["nodejs_compat"]
 kv_namespaces = [{ binding = "KV", id = "999c4cf019a94b0eb439209c893a3356" }]
 
 # the name what is it?
@@ -11,6 +11,11 @@ kv_namespaces = [{ binding = "KV", id = "999c4cf019a94b0eb439209c893a3356" }]
 # watch_dir = "pages-gen"
 
 services = [{ binding = "USER_SERVICE", service = "user-service" }]
+
+
+[[r2_buckets]]
+binding = 'R2'              # <~ valid JavaScript variable name
+bucket_name = 'test-bucket'
 
 
 [[d1_databases]]

@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { renderer } from "../common/renderer";
+// import { serveStatic } from "hono/cloudflare-workers";
 const app = new Hono()
   .use("*", async (c, next) => {
     const start = Date.now();
@@ -33,6 +34,9 @@ const app = new Hono()
     return c.render(<div>Id is {c.req.param("id")}</div>);
   });
 
+// app.get("*", serveStatic({ root: "./" }));
+
+// app.get("/favicon.ico", serveStatic({ path: "./favicon.ico" }));
 export type AppType = typeof app;
 
 // app.render()

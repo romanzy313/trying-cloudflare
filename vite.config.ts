@@ -1,9 +1,12 @@
 import { defineConfig } from "vite";
-import devServer from "@hono/vite-dev-server";
+import devServer, { defaultOptions } from "@hono/vite-dev-server";
+import pages from "@hono/vite-cloudflare-pages";
 
 export default defineConfig(({ mode }) => {
   if (mode === "client") {
     return {
+      // publicDir: "public",
+      // base: "/",
       build: {
         lib: {
           entry: "./src/wc.ts", // glob the entry
@@ -22,9 +25,24 @@ export default defineConfig(({ mode }) => {
     };
   } else {
     return {
+      // publicDir: "public",
+      // base: "/",
+
       plugins: [
+        // pages({
+        //   entry: "src/static.tsx",
+        // }),
         devServer({
           entry: "src/static.tsx",
+          // exclude will be attemted to be served by the miniflare
+          exclude: [
+            /.*\.ts$/,
+            /.*\.tsx$/,
+            /^\/@.+$/,
+            /^\/favicon\.*$/,
+            /^\/static\/.+/,
+            /^\/node_modules\/.*/,
+          ],
         }),
       ],
     };
