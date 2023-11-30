@@ -26,8 +26,8 @@ const decodeImage = async (buffer: ArrayBuffer, format: string) => {
     return decodeJpeg(buffer);
   } else if (format === "image/png") {
     // @Note, we need to manually initialise the wasm module here from wasm import at top of file
-    await WebAssembly.instantiate(PNG_DEC_WASM);
-    // await initPngWasm(PNG_DEC_WASM);
+    // await WebAssembly.instantiate(PNG_DEC_WASM);
+    await initPngWasm(PNG_DEC_WASM);
     return decodePng(buffer);
   }
 
@@ -43,11 +43,11 @@ const decodeImage = async (buffer: ArrayBuffer, format: string) => {
 
 export const processImg3 = async (buffer: ArrayBuffer, format: string) => {
   // JPEG_DEC_WASM is the name of the imported file
-  await WebAssembly.instantiate(WEBP_ENC_WASM);
-  await WebAssembly.instantiate(RESIZE_WASM);
+  // await WebAssembly.instantiate(WEBP_ENC_WASM);
+  // await WebAssembly.instantiate(RESIZE_WASM);
 
-  // await initWebpWasm(WEBP_ENC_WASM); // JPEG_DEC_WASM is the name of the imported file
-  // await initResize(RESIZE_WASM);
+  await initWebpWasm(WEBP_ENC_WASM); // JPEG_DEC_WASM is the name of the imported file
+  await initResize(RESIZE_WASM);
 
   const imgData = await decodeImage(buffer, format);
   // const image = await fetch('./image.jpeg').then(res => res.arrayBuffer()).then(decode);

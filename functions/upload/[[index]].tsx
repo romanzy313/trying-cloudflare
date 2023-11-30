@@ -119,8 +119,10 @@ app
     //   );
 
     try {
-      const uploadRes = await c.env.R2.put(processedName, processed);
-      console.log("upload success, res", uploadRes);
+      c.executionCtx.waitUntil(c.env.R2.put(processedName, processed));
+
+      // const uploadRes = await c.env.R2.put(processedName, processed);
+      // console.log("upload success, res", uploadRes);
     } catch (error: any) {
       return c.html(
         <UploadForm

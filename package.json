@@ -14,7 +14,8 @@
     "post:build": "cp -r ./public/* ./dist/",
     "deploy": "pnpm pre:build && pnpm build && pnpm post:build && wrangler pages deploy ./dist --branch=production --commit-dirty=true ",
     "typegen": "DATABASE_URL=\"./.wrangler/state/v3/d1/miniflare-D1DatabaseObject/e7352547963de7050bd7d94658afc4fe78b61811b7815da12d90be8e863abf4d.sqlite\" kysely-codegen",
-    "dev:migrate": "wrangler d1 migrations apply DB --local"
+    "dev:migrate": "wrangler d1 migrations apply DB --local",
+    "tail": "pnpm wrangler pages deployment tail test-01"
   },
   "dependencies": {
     "@borderless/worker-sentry": "^2.0.0",
